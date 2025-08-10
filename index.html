@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisionMega - Serviços Digitais Profissionais</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header fixo -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>VisionMega</h1>
+            </div>
+            
+            <!-- Menu desktop -->
+            <nav class="nav-desktop">
+                <ul>
+                    <li><a href="#prontos">Prontos</a></li>
+                    <li><a href="#pedidos">Pedidos</a></li>
+                    <li><a href="#promocoes">Promoções</a></li>
+                    <li><a href="#entregas">Entregas</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Menu hambúrguer para mobile -->
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+        
+        <!-- Menu mobile -->
+        <nav class="nav-mobile" id="navMobile">
+            <ul>
+                <li><a href="#prontos">Prontos</a></li>
+                <li><a href="#pedidos">Pedidos</a></li>
+                <li><a href="#promocoes">Promoções</a></li>
+                <li><a href="#entregas">Entregas</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transforme Sua Presença Digital com a VisionMega</h1>
+                <p>Sites profissionais, landing pages e soluções digitais de alta qualidade. Pronto para impulsionar seu negócio online!</p>
+                <button class="cta-button" onclick="scrollToSection('prontos')">
+                    Ver Produtos <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Produtos Prontos -->
+    <section id="prontos" class="products">
+        <div class="container">
+            <h2>Produtos Prontos</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Landing Page</h3>
+                    <p>Landing page profissional otimizada para conversões</p>
+                    <div class="price">R$ 10,00</div>
+                    <button class="buy-button" onclick="openCheckout('Landing Page', 10.00)">
+                        Comprar Agora
+                    </button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <h3>Portfólio</h3>
+                    <p>Site portfólio elegante para mostrar seus trabalhos</p>
+                    <div class="price">R$ 7,00</div>
+                    <button class="buy-button" onclick="openCheckout('Portfólio', 7.00)">
+                        Comprar Agora
+                    </button>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Vendas Simples</h3>
+                    <p>Site de vendas completo e responsivo</p>
+                    <div class="price">R$ 20,00</div>
+                    <button class="buy-button" onclick="openCheckout('Vendas Simples', 20.00)">
+                        Comprar Agora
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Área de Checkout -->
+    <div id="checkout" class="checkout-overlay">
+        <div class="checkout-modal">
+            <div class="checkout-header">
+                <h3>Finalizar Compra</h3>
+                <button class="close-button" onclick="closeCheckout()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="checkout-content">
+                <div class="product-summary">
+                    <h4 id="checkoutProductName">Produto</h4>
+                    <div class="price-section">
+                        <div class="original-price" id="originalPrice">R$ 0,00</div>
+                        <div class="final-price" id="finalPrice">R$ 0,00</div>
+                    </div>
+                </div>
+                
+                <div class="coupon-section">
+                    <label for="couponInput">Cupom de Desconto:</label>
+                    <div class="coupon-input-group">
+                        <input type="text" id="couponInput" placeholder="Digite seu cupom">
+                        <button onclick="applyCoupon()">Aplicar</button>
+                    </div>
+                    <div id="couponMessage" class="coupon-message"></div>
+                </div>
+                
+                <div class="payment-info">
+                    <h4>Informações de Pagamento</h4>
+                    <div class="pix-info">
+                        <p><strong>Chave PIX:</strong></p>
+                        <div class="pix-key">
+                            <span id="pixKey">cfcd9c3f-ef83-4643-ab24-f96a02d1ceb2</span>
+                            <button onclick="copyPixKey()" class="copy-button">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="discord-info">
+                        <p><strong>Após o pagamento, entre no nosso Discord:</strong></p>
+                        <a href="https://discord.gg/K7fdMFRKnJ" target="_blank" class="discord-link">
+                            <i class="fab fa-discord"></i> Entrar no Discord
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Seção de Promoções -->
+    <section id="promocoes" class="promotions">
+        <div class="container">
+            <h2>Promoções Ativas</h2>
+            <div class="promotion-card">
+                <div class="promotion-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>Astra - 10% de desconto</h3>
+                <p>Use o cupom <strong>ASTRA</strong> e ganhe 10% de desconto em qualquer produto!</p>
+                <div class="promotion-validity">Válido até o final do mês</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Pedidos Personalizados -->
+    <section id="pedidos" class="custom-orders">
+        <div class="container">
+            <h2>Pedidos Personalizados</h2>
+            <div class="order-form-container">
+                <p>Precisa de algo específico? Conte-nos sobre seu projeto!</p>
+                
+                <form id="customOrderForm" class="order-form">
+                    <div class="form-group">
+                        <label for="discordName">Nome no Discord para menção:</label>
+                        <input type="text" id="discordName" name="discordName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="siteFunctionality">Funcionalidade do site:</label>
+                        <textarea id="siteFunctionality" name="siteFunctionality" rows="5" required placeholder="Descreva detalhadamente o que você precisa..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Enviar Pedido
+                    </button>
+                </form>
+                
+                <div id="formMessage" class="form-message"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Entregas -->
+    <section id="entregas" class="deliveries">
+        <div class="container">
+            <h2>Como Funciona a Entrega</h2>
+            <div class="delivery-steps">
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>1. Pagamento</h3>
+                    <p>Realize o pagamento via PIX usando a chave fornecida</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>2. Discord</h3>
+                    <p>Entre no nosso servidor Discord e envie o comprovante</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>3. Entrega</h3>
+                    <p>Receba seu produto em até 24 horas úteis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>VisionMega</h3>
+                    <p>Transformando ideias em realidade digital</p>
+                </div>
+                
+                <div class="footer-links">
+                    <a href="https://discord.gg/K7fdMFRKnJ" target="_blank">
+                        <i class="fab fa-discord"></i> Discord
+                    </a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 VisionMega. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
