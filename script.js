@@ -10,9 +10,9 @@ const PIX_KEY = 'cfcd9c3f-ef83-4643-ab24-f96a02d1ceb2';
 
 // Cupons de desconto disponíveis
 const COUPONS = {
-    'ASTRA': {
-        discount: 0.10,
-        description: '10% de desconto'
+    'ASTRA10': {
+        discount: 0.20,
+        description: '20% de desconto'
     },
     'VISION10': {
         discount: 0.10,
