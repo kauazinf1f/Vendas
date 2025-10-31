@@ -4,15 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>AstraViral • Divulgação | Discord</title>
-
-  <!-- Fonte -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --bg:#071026;
       --card:#071827;
-      --glass: rgba(255,255,255,0.04);
+      --glass: rgba(255,255,255,0.05);
       --muted: #9fb6c6;
       --accent: #00D2FF;
       --accent-dark: #00b8e6;
@@ -20,147 +18,72 @@
       font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;
       color-scheme: dark;
     }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
+    *{box-sizing:border-box;margin:0;padding:0}
     body{
-      margin:0;
-      min-height:100vh;
-      background:
-        radial-gradient(1200px 600px at 10% 10%, rgba(0,210,255,0.04), transparent 6%),
-        radial-gradient(900px 400px at 90% 90%, rgba(0,210,255,0.02), transparent 6%),
-        linear-gradient(180deg,var(--bg),#031026 120%);
+      background:linear-gradient(180deg,var(--bg),#031026 120%);
       color:#eaf6fb;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:28px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      padding:28px 18px;
+      font-family:'Inter',sans-serif;
     }
-
-    .container{width:100%;max-width:1100px}
-
+    .container{max-width:1100px;margin:0 auto;}
     header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:12px;
-      margin-bottom:18px;
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:24px;
     }
-
-    .brand{display:flex;gap:12px;align-items:center}
-    .logo{
-      width:56px;height:56px;border-radius:12px;
-      background:linear-gradient(135deg,var(--accent),var(--accent-dark));
-      display:grid;place-items:center;font-weight:800;color:#012;
-      box-shadow:0 8px 30px rgba(0,0,0,0.6);
-      font-size:18px;
+    .brand{display:flex;align-items:center;gap:12px;}
+    .logo{width:56px;height:56px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:12px;display:grid;place-items:center;font-weight:800;color:#012;}
+    h1{font-size:20px;margin:0}
+    p.lead{color:var(--muted);font-size:13px;}
+    .btn{border:none;cursor:pointer;padding:10px 14px;border-radius:10px;font-weight:600;transition: transform .15s ease;}
+    .btn:hover{transform:translateY(-2px);}
+    .btn-primary{background:linear-gradient(90deg,var(--accent),var(--accent-dark));color:#012;}
+    main{display:grid;grid-template-columns:1fr 350px;gap:20px;}
+    .hero-card{background:var(--glass);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;gap:16px;}
+    
+    /* Categoria como botões */
+    .category-selector{display:flex;gap:10px;margin-bottom:16px;}
+    .category-btn{
+      flex:1;
+      padding:10px 14px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.03);
+      color:#eaf6fb;
+      font-weight:600;
+      cursor:pointer;
+      transition: all .2s ease;
     }
-    h1{font-size:18px;margin:0}
-    p.lead{margin:0;color:var(--muted);font-size:13px}
-
-    .top-actions{display:flex;gap:10px;align-items:center}
-    .btn{
-      background:transparent;border:1px solid rgba(255,255,255,0.06);
-      padding:10px 14px;border-radius:10px;color:var(--accent);
-      cursor:pointer;font-weight:600;
-      backdrop-filter: blur(6px);
-      transition: transform .16s ease, box-shadow .16s ease, opacity .12s;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{
+    .category-btn:hover{background:rgba(0,210,255,0.1);}
+    .category-btn.active{
       background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-      color:#012;border:none;box-shadow:0 8px 24px rgba(0,210,255,0.08);
+      color:#012;
+      border:none;
     }
 
-    main{
-      display:grid;
-      grid-template-columns: 1fr 340px;
-      gap:18px;
-      align-items:start;
-    }
-
-    /* Left area - serviços */
-    .hero-card{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:var(--radius);
-      padding:18px;
-      box-shadow:0 10px 40px rgba(2,8,20,0.6);
-      border:1px solid rgba(255,255,255,0.03);
-    }
-
-    .services{
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:12px;
-      margin-top:14px;
-    }
-
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;}
     .service{
-      background: var(--glass);
+      background:var(--glass);
+      border:1px solid rgba(255,255,255,0.08);
       border-radius:12px;padding:14px;
-      display:flex;flex-direction:column;gap:10px;
-      min-height:130px;
-      border:1px solid rgba(255,255,255,0.03);
-      transition: transform .18s ease, box-shadow .18s ease;
+      transition:transform .15s ease,box-shadow .15s ease,opacity .3s ease;
+      opacity:0;
     }
-    .service:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(1,16,30,0.45)}
-    .service .icon{
-      width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.03);
-      display:grid;place-items:center;font-weight:700;color:var(--accent);
+    .service.visible{opacity:1;}
+    .service h3{margin:0 0 4px;font-size:15px;}
+    .price{color:var(--accent);font-weight:700;margin-top:6px;}
+    .testimonials{display:flex;flex-direction:column;gap:10px;margin-top:16px;}
+    .testi{
+      background:var(--glass);
+      padding:12px;
+      border-radius:12px;
+      color:var(--muted);
+      font-size:13px;
+      opacity:0;
+      transition:opacity .4s ease, transform .4s ease;
+      transform:translateY(10px);
     }
-    .service h3{margin:0;font-size:15px}
-    .service p{margin:0;color:var(--muted);font-size:13px;flex:1}
-
-    .service .buy-row{display:flex;gap:8px;margin-top:8px}
-    .price{font-weight:800;color:#e6faff}
-    .small{font-size:12px;color:var(--muted)}
-
-    /* Right sidebar */
-    .sidebar{
-      background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      border-radius:var(--radius);padding:16px;border:1px solid rgba(255,255,255,0.03);
-      height:100%;
-      display:flex;flex-direction:column;gap:12px;
-      box-shadow:0 10px 30px rgba(0,0,0,0.5);
-    }
-
-    .invite-cta{display:flex;flex-direction:column;gap:12px;align-items:stretch}
-    .invite-cta p{margin:0;color:var(--muted);font-size:13px}
-    .invite-cta .invite-btn{
-      display:inline-flex;align-items:center;gap:8px;justify-content:center;
-      padding:12px;border-radius:12px;font-weight:700;text-decoration:none;
-      background:linear-gradient(90deg,var(--accent),var(--accent-dark));
-      color:#012;border:none;cursor:pointer;
-      box-shadow:0 12px 30px rgba(0,210,255,0.08);
-    }
-
-    .small-card{background:rgba(255,255,255,0.02);padding:10px;border-radius:10px}
-    .stats{display:flex;gap:8px}
-    .stat{flex:1;text-align:center;padding:10px;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.02)}
-    .stat strong{display:block;font-size:20px}
-    .testimonials{display:flex;flex-direction:column;gap:8px}
-    .testi{background:var(--glass);padding:10px;border-radius:10px;font-size:14px;color:var(--muted)}
-
-    footer{margin-top:18px;text-align:center;color:var(--muted);font-size:13px}
-
-    /* responsive */
-    @media (max-width:980px){
-      main{grid-template-columns:1fr 300px}
-      .services{grid-template-columns:repeat(2,1fr)}
-    }
-    @media (max-width:720px){
-      header{flex-direction:column;align-items:flex-start;gap:12px}
-      main{grid-template-columns:1fr;gap:14px}
-      .services{grid-template-columns:1fr}
-      .sidebar{order:2}
-    }
-
-    /* small animations */
-    .fade-in{opacity:0;transform:translateY(8px);transition:opacity .6s ease, transform .6s ease}
-    .fade-in.visible{opacity:1;transform:none}
-    .count{font-weight:800;font-size:18px;color:#eaffff}
+    .testi.visible{opacity:1;transform:translateY(0);}
+    footer{text-align:center;margin-top:20px;color:var(--muted);font-size:13px;}
+    @media(max-width:750px){main{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
@@ -173,224 +96,107 @@
           <p class="lead">Siga, curta e aumente sua visibilidade — venda de seguidores, curtidas e visualizações.</p>
         </div>
       </div>
-
-      <div class="top-actions">
-        <button class="btn" id="copyInviteBtn" title="Copiar convite">Copiar convite</button>
-        <a id="enterBtn" class="btn btn-primary" href="#" target="_blank">Entrar no Discord</a>
-      </div>
+      <a class="btn btn-primary" id="enterBtn" href="https://discord.gg/KXrbdUTq7b" target="_blank">Entrar no Discord</a>
     </header>
 
     <main>
-      <!-- Left: serviços -->
-      <section class="hero-card fade-in" id="servicesCard">
-        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-          <div>
-            <h2 style="margin:0">Nossos serviços Tik Tok</h2>
-            <p class="lead" style="margin-top:6px">Pacotes rápidos, entrega confiável e suporte no Discord.</p>
-          </div>
-          <div class="small" style="font-size:13px">Pagamento via Pix</div>
+      <div class="hero-card">
+        <h2>Escolha uma categoria</h2>
+        <div class="category-selector">
+          <button class="category-btn active" data-cat="tiktok">TikTok</button>
+          <button class="category-btn" data-cat="instagram">Instagram</button>
+          <button class="category-btn" data-cat="dc">Discord</button>
+        </div>
+        <div class="services" id="servicesList"></div>
+      </div>
+
+      <aside class="hero-card">
+        <h3>Entre no nosso Discord</h3>
+        <p>Suporte, promoções e atualizações exclusivas!</p>
+        <button class="btn btn-primary" id="copyInviteBtn">Copiar convite</button>
+
+        <strong>Avaliações</strong>
+        <div class="testimonials" id="testimonials">
+          <div class="testi">"Entrega rápida e segura — recomendo!" — @rdearnmoney</div>
+          <div class="testi">"Suporte excelente no Discord." — @djgatoda011</div>
+          <div class="testi">"Serviço confiável e super rápido!" — @kaua10_10</div>
         </div>
 
-        <div class="services" style="margin-top:16px">
-          <div class="service">
-            <div class="icon">👥</div>
-            <h3>Seguidores</h3>
-            <p>Pacotes de seguidores reais e entregas escalonadas para parecer natural.</p>
-            <div class="buy-row">
-              <div>
-                <div class="price">R$ 14,00</div>
-                <div class="small">1000 seguidores</div>
-              </div>
-              <div style="margin-left:auto;display:flex;gap:8px">
-                <button class="btn" onclick="buy('Seguidores 100')">Comprar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="service">
-            <div class="icon">❤️</div>
-            <h3>Curtidas</h3>
-            <p>Curtidas entregues em massa para impulsionar suas postagens e aumentar a prova social.</p>
-            <div class="buy-row">
-              <div>
-                <div class="price">R$ 5,00</div>
-                <div class="small">1000 curtidas</div>
-              </div>
-              <div style="margin-left:auto;display:flex;gap:8px">
-                <button class="btn" onclick="buy('Curtidas 200')">Comprar</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="service">
-            <div class="icon">▶️</div>
-            <h3>Visualizações</h3>
-            <p>Visibilidade imediata com visualizações contínuas para seus vídeos e histórias.</p>
-            <div class="buy-row">
-              <div>
-                <div class="price">R$ 2,50</div>
-                <div class="small">1.000 visualizações</div>
-              </div>
-              <div style="margin-left:auto;display:flex;gap:8px">
-                <button class="btn" onclick="buy('Visualizações 1.000')">Comprar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Right: sidebar -->
-      <aside class="sidebar fade-in" id="sidebarCard">
-        <div class="invite-cta">
-          <p>Entre no nosso servidor para suporte, pagamentos e provas sociais.</p>
-          <a id="discordInvite" class="invite-btn" href="#" target="_blank">Entrar no Discord</a>
-          <button class="btn" id="copyInviteBtn2">Copiar convite</button>
-        </div>
-
-        <div class="small-card">
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <strong>Estatísticas</strong>
-            <span class="small">Atualizadas</span>
-          </div>
-          <div class="stats" style="margin-top:10px">
-            <div class="stat">
-              <div class="small">Seguidores vendidos</div>
-              <div class="count" id="countSold">0</div>
-            </div>
-            <div class="stat">
-              <div class="small">Pedidos hoje</div>
-              <div class="count" id="countToday">0</div>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          <strong>Avaliações</strong>
-          <div class="testimonials" style="margin-top:8px">
-            <div class="testi">"Entrega rápida e segura — recomendo!" — @rdearnmoney</div>
-            <div class="testi">"Suporte excelente no Discord." — @djgatoda011</div>
-          </div>
-        </div>
-
-        <div style="margin-top:auto">
-          <div class="small muted" style="color:var(--muted);font-size:12px">
-            Dica: compartilhe o convite em bios e redes sociais para aumentar suas vendas.
-          </div>
+        <div style="margin-top:auto;font-size:12px;color:var(--muted)">
+          Dica: compartilhe o convite em bios e redes sociais para aumentar suas vendas.
         </div>
       </aside>
     </main>
 
     <footer>
-      <div class="small" style="color:var(--muted)">© <span id="year"></span> AstraViral — Todos os direitos reservados.</div>
+      © <span id="year"></span> AstraViral — Todos os direitos reservados.
     </footer>
   </div>
 
   <script>
-    /******************
-     * CONFIGURE AQUI *
-     ******************/
-    const DISCORD_INVITE = 'https://discord.gg/KXrbdUTq7b'; // <- substitua pelo seu convite
-    const STORE_NAME = 'AstraViral'; // <- substitua pelo nome da sua loja/servidor
-
-    // Atualiza textos que precisam do nome
+    const DISCORD_INVITE = 'https://discord.gg/KXrbdUTq7b';
+    const STORE_NAME = 'AstraViral';
     document.getElementById('storeName').textContent = STORE_NAME;
-    document.querySelector('title').textContent = STORE_NAME + ' • Divulgação | Discord';
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Links de convite
     document.getElementById('enterBtn').href = DISCORD_INVITE;
-    document.getElementById('discordInvite').href = DISCORD_INVITE;
 
-    // Copiar convite (dois botões)
-    function copyInvite() {
-      if (!navigator.clipboard) {
-        prompt('Copie o link abaixo:', DISCORD_INVITE);
-        return;
-      }
-      navigator.clipboard.writeText(DISCORD_INVITE).then(() => {
-        toast('Convite copiado!');
-      }, () => { prompt('Copie o link abaixo:', DISCORD_INVITE); });
+    document.getElementById('copyInviteBtn').addEventListener('click', ()=>{
+      navigator.clipboard.writeText(DISCORD_INVITE);
+      alert('Convite copiado!');
+    });
+
+    const products = {
+      tiktok: [
+        {name:'1.000 Seguidores Reais', price:'R$14,00'},
+        {name:'1.000 Curtidas Automáticas', price:'R$5,00'},
+        {name:'1.000 Visualizações', price:'R$2,50'}
+      ],
+      instagram: [
+        {name:'1.000 Curtidas', price:'R$7,00'},
+        {name:'1.000 Visualizações em Reels', price:'R$1,00'}
+      ],
+      dc: [
+        {name:'100 Membros', price:'R$1,50'}
+      ]
+    };
+
+    const servicesList = document.getElementById('servicesList');
+    const catButtons = document.querySelectorAll('.category-btn');
+
+    function renderProducts(category){
+      servicesList.innerHTML = '';
+      products[category].forEach((p,i)=>{
+        const div = document.createElement('div');
+        div.className = 'service';
+        div.innerHTML = `
+          <h3>${p.name}</h3>
+          <p class="price">${p.price}</p>
+          <button class="btn btn-primary" onclick="buy('${p.name}')">Comprar</button>
+        `;
+        servicesList.appendChild(div);
+        setTimeout(()=> div.classList.add('visible'), i*100);
+      });
     }
-    document.getElementById('copyInviteBtn').addEventListener('click', copyInvite);
-    document.getElementById('copyInviteBtn2').addEventListener('click', copyInvite);
 
-    // Exemplo de compra (abre o servidor e envia uma mensagem simulada)
+    catButtons.forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        catButtons.forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        renderProducts(btn.dataset.cat);
+      });
+    });
+
     function buy(what){
-      const ok = confirm(`Deseja comprar: ${what} ?\nVocê será redirecionado ao nosso Discord para finalizar pagamento.`);
+      const ok = confirm(`Deseja comprar: ${what}?\nVocê será redirecionado ao nosso Discord.`);
       if(ok) window.open(DISCORD_INVITE, '_blank');
     }
 
-    // Contadores animados (valores de amostra — personalize ou conecte a API)
-    const stats = {
-      sold: 12400,    // ex: 12.4k seguidores vendidos
-      today: 5
-    };
+    renderProducts('tiktok');
 
-    function animateCount(el, to, duration=1400) {
-      const start = 0;
-      const startTime = performance.now();
-      function tick(now){
-        const elapsed = now - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const value = Math.floor(start + (to - start) * easeOutCubic(progress));
-        el.textContent = formatNumber(value);
-        if(progress < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    }
-    function easeOutCubic(t){ return 1 - Math.pow(1-t, 3); }
-    function formatNumber(n){
-      if(n >= 1000) return (n/1000).toFixed(n%1000===0?0:1) + 'k';
-      return n.toString();
-    }
-
-    // Only animate when visible
-    const soldEl = document.getElementById('countSold');
-    const todayEl = document.getElementById('countToday');
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          animateCount(soldEl, stats.sold, 1600);
-          animateCount(todayEl, stats.today, 1000);
-          observer.disconnect();
-        }
-      });
-    }, {threshold:0.25});
-    observer.observe(soldEl);
-
-    // Fade-in quando rola (usar IntersectionObserver)
-    document.querySelectorAll('.fade-in').forEach(el=>{
-      const io = new IntersectionObserver((entries, o)=>{
-        entries.forEach(entry=>{
-          if(entry.isIntersecting){
-            entry.target.classList.add('visible');
-            o.unobserve(entry.target);
-          }
-        });
-      }, {threshold: 0.12});
-      io.observe(el);
+    // animação das avaliações
+    document.querySelectorAll('.testi').forEach((el,i)=>{
+      setTimeout(()=> el.classList.add('visible'), i*200);
     });
-
-    // Toast simples (alert estilizado com fallback)
-    function toast(msg){
-      // simples: usar alert se não for possível mostrar notificação custom
-      try{
-        // cria elemento temporário
-        const t = document.createElement('div');
-        t.textContent = msg;
-        Object.assign(t.style, {
-          position:'fixed',left:'50%',top:'20px',transform:'translateX(-50%)',
-          background:'rgba(0,0,0,0.6)',color:'#fff',padding:'10px 14px',
-          borderRadius:'8px',zIndex:9999,boxShadow:'0 8px 24px rgba(0,0,0,0.6)'
-        });
-        document.body.appendChild(t);
-        setTimeout(()=> t.style.opacity='0', 1800);
-        setTimeout(()=> t.remove(), 2400);
-      }catch(e){ alert(msg); }
-    }
-
-    // Adaptação: se o usuário desejar, você pode buscar stats reais via API e atualizar os valores.
   </script>
 </body>
 </html>
